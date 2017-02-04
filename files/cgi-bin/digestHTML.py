@@ -16,8 +16,8 @@ f_o = open(output_file, 'w')
 print("<html><meta charset=\"utf-8\"><body>")
 
 #webからURLのクエリ
-input_file ="htmlsource.txt"
-input_file = input_file + " " + str(time)
+input_file ="htmlsource"
+input_file = input_file  + str(time) + ".txt"
 form = cgi.FieldStorage()
 f_i = open(input_file, 'w')
 f_i.write(form['pastedHTML'].value)
