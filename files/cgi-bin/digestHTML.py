@@ -2,15 +2,22 @@
 # -*- coding: utf-8 -*-
 import cgi
 import sys
+import datetime
+
+time = datetime.datetime.today()
 
 args = sys.argv
 
 output_file = "creditsSheet.txt"
 f_o = open(output_file, 'w')
 
+#htmlにするため
+#print("print \"Content-type: text/html; charset=utf-8\n\").encode('utf-8')
+print("<html><meta charset=\"utf-8\"><body>")
 
 #webからURLのクエリ
 input_file ="htmlsource.txt"
+input_file = input_file + " " + str(time)
 form = cgi.FieldStorage()
 f_i = open(input_file, 'w')
 f_i.write(form['pastedHTML'].value)
@@ -74,7 +81,7 @@ for key in group.keys():
 	nonfinishedCreditSum += nonfinishedGroup[key]
 print "合計: " + str(creditSum) +" ("+ str(nonfinishedCreditSum) +")" +" 単位"
 
-print "\n---評価別の数(＊は未評価)---"
+print ("\n---評価別の数(＊は未評価)---")
 for key in credit.keys():
 	if key != "<BR>":
 		print key + " " + str(credit[key])
@@ -86,3 +93,5 @@ print "class " + str(classNum)
 print "finishedClass " +str(classNum -credit["＊"])
 print "GPA " + str(float(GPA)/(classNum-credit["＊"]))
 
+
+print ("</body></html>")
