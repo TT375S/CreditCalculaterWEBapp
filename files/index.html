@@ -9,16 +9,10 @@
   </head>
   <body>
     <!-- Header -->
-    <form action="http://192.168.1.110:8080/cgi-bin/digestHTML.py" method="post">
-      <div>
-        <label for="pastedHTML">message:</label><br>
-        <input type="text" />
-      </div>
-
-      <div class="button">
-        <button type="submit">メッセージを送信</button>
-      </div>
-    </form>
+    <form  method="POST" action="http://192.168.1.110:8080/cgi-bin/digestHTML.py">
+	Paste HTML source.<textarea name="pastedHTML"></textarea><br>
+	<input type="submit" value="submit">
+	</form>
     <!-- Top content -->
  </body>
 </html>

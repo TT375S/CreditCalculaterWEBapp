@@ -9,38 +9,12 @@ output_file = "creditsSheet.txt"
 f_o = open(output_file, 'w')
 
 
-if len(args) > 1:
-#標準入力から読み込み
-	if args[1] == "-l":
-		print "成績照会のページのhtmlソースを貼り付けてください。入力終了はctrl+Dです。(Windowsではctrl+Z?)"
-		input_file ="htmlsource.txt"
-		form = sys.stdin.readlines()
-		f_i = open(input_file, 'w')
-		for line in form:
-			f_i.write(line)
-		#開き直さないと、f_i.readline()で一行目から読み込まれない。書き込んだ最後からの読み込みになってしまう。
-		f_i = open(input_file)
 #webからURLのクエリ
-	elif args[1] == "-w":
-		input_file ="htmlsource.txt"
-		form = cgi.FieldStorage()
-		f_i = open(input_file, 'w')
-		f_i.write(form['htmlsource'])
-		f_i = open(input_file)
-#ファイルからHTMLを読み込み
-	elif args[1] == "-f":
-		input_file = args[2]
-		f_i = open(input_file)
-	else :
-		print "オプションを指定してください"
-else :
-	print "オプションを指定してください"
-#webからURLのクエリ
-	input_file ="htmlsource.txt"
-	form = cgi.FieldStorage()
-	f_i = open(input_file, 'w')
-	f_i.write(form['pastedHTML'])
-	f_i = open(input_file)
+input_file ="htmlsource.txt"
+form = cgi.FieldStorage()
+f_i = open(input_file, 'w')
+f_i.write(form['pastedHTML'].value)
+f_i = open(input_file)
 
 line = f_i.readline()
 credit = {"A+":0, "A":0, "B":0, "C":0, "F":0, "G":0, "H":0 }
